@@ -1,0 +1,28 @@
+@startuml TemplateMethod
+
+abstract class Missao {
+    +executarMissao()
+    +preparar()
+    +viajar()
+    +acaoPrincipal()
+    +retornar()
+    +recompensar()
+}
+
+class MissaoGuerreiro {
+    +acaoPrincipal()
+}
+
+class MissaoMago {
+    +acaoPrincipal()
+}
+
+class MissaoLadrao {
+    +acaoPrincipal()
+}
+
+Missao <|-- MissaoGuerreiro
+Missao <|-- MissaoMago
+Missao <|-- MissaoLadrao
+
+@enduml

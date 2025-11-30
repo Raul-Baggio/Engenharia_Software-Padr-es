@@ -1,0 +1,73 @@
+@startuml AbstractFactoryNPCs
+
+title NPC Game (Human vs Orc)
+
+interface NPCFactory {
+    + createWarrior() : Warrior
+    + createArcher() : Archer
+    + createHealer() : Healer
+}
+
+class HumanFactory implements NPCFactory
+class OrcFactory implements NPCFactory
+
+HumanFactory --> HumanWarrior
+HumanFactory --> HumanArcher
+HumanFactory --> HumanPriest
+
+OrcFactory --> OrcWarrior
+OrcFactory --> OrcArcher
+OrcFactory --> OrcShaman
+
+
+/' ABSTRACT PRODUCTS '/
+interface Warrior {
+    + attack()
+}
+
+interface Archer {
+    + shoot()
+}
+
+interface Healer {
+    + heal()
+}
+
+
+/' CONCRETE PRODUCTS - HUMAN '/
+class HumanWarrior implements Warrior
+class HumanArcher implements Archer
+class HumanPriest implements Healer
+
+HumanWarrior : attack()
+HumanArcher : shoot()
+HumanPriest : heal()
+
+
+/' CONCRETE PRODUCTS - ORC '/
+class OrcWarrior implements Warrior
+class OrcArcher implements Archer
+class OrcShaman implements Healer
+
+OrcWarrior : attack()
+OrcArcher : shoot()
+OrcShaman : heal()
+
+
+/' CLIENT '/
+class Game {
+    - factory : NPCFactory
+    - warrior : Warrior
+    - archer : Archer
+    - healer : Healer
+    + Game(factory: NPCFactory)
+    + createNPCs()
+    + play()
+}
+
+Game --> NPCFactory
+Game --> Warrior
+Game --> Archer
+Game --> Healer
+
+@enduml

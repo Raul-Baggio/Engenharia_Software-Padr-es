@@ -1,0 +1,41 @@
+@startuml Decorator
+
+interface Personagem {
+    +getDescricao(): String
+    +getPoder(): int
+}
+
+class Guerreiro {
+    +getDescricao(): String
+    +getPoder(): int
+}
+
+abstract class PersonagemDecorator {
+    -personagem: Personagem
+    +getDescricao(): String
+    +getPoder(): int
+}
+
+class ArmaduraPesada {
+    +getDescricao(): String
+    +getPoder(): int
+}
+
+class EspadaLonga {
+    +getDescricao(): String
+    +getPoder(): int
+}
+
+class EscudoDeAco {
+    +getDescricao(): String
+    +getPoder(): int
+}
+
+Personagem <|.. Guerreiro
+Personagem <|.. PersonagemDecorator
+PersonagemDecorator <|-- ArmaduraPesada
+PersonagemDecorator <|-- EspadaLonga
+PersonagemDecorator <|-- EscudoDeAco
+PersonagemDecorator --> Personagem
+
+@enduml
